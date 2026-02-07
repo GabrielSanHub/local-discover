@@ -1,110 +1,169 @@
-import { useParams, Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { Star, MapPin, Clock, ArrowLeft, Check, Users } from "lucide-react";
 import Layout from "@/components/Layout";
+import { useParams, useNavigate } from "react-router-dom";
 import { experiences } from "@/data/mockData";
-import { useToast } from "@/hooks/use-toast";
+import { Button } from "@/components/ui/button";
+import { MapPin, Star, Clock, ChevronLeft, Navigation, Calendar, Users, ShieldCheck } from "lucide-react";
+import { toast } from "sonner";
 
 const ExperienceDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  
+  // Busca a experiência pelo ID
   const experience = experiences.find((e) => e.id === id);
-  const { toast } = useToast();
 
   if (!experience) {
     return (
       <Layout>
-        <div className="container py-20 text-center">
-          <p className="text-muted-foreground text-lg">Experiência não encontrada.</p>
-          <Link to="/experiencias" className="text-secondary font-semibold mt-4 inline-block">Voltar</Link>
+        <div className="min-h-[60vh] flex flex-col items-center justify-center">
+          <h2 className="text-2xl font-bold text-gray-800">Experiência não encontrada</h2>
+          <Button variant="link" onClick={() => navigate("/experiencias")}>
+            Voltar para lista
+          </Button>
         </div>
       </Layout>
     );
   }
 
-  const handleReserve = () => {
-    toast({ title: "Reserva solicitada!", description: `Sua reserva para "${experience.name}" foi enviada com sucesso.` });
+  const handleBooking = () => {
+    toast.success("Redirecionando para agendamento...");
+    // Aqui você colocaria a lógica de agendamento ou link externo
   };
 
   return (
     <Layout>
-      <div className="relative h-72 md:h-[28rem]">
-        <img src={experience.image} alt={experience.name} className="w-full h-full object-cover" />
-        <div className="absolute inset-0 hero-overlay" />
-        <div className="absolute top-6 left-6">
-          <Link
-            to="/experiencias"
-            className="inline-flex items-center gap-2 bg-card/80 backdrop-blur-sm text-foreground rounded-full px-4 py-2 text-sm font-medium hover:bg-card transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" /> Voltar
-          </Link>
-        </div>
-        <div className="absolute bottom-6 left-6 right-6">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <span className="inline-block bg-secondary text-secondary-foreground text-xs font-bold px-3 py-1 rounded-full mb-3">
-              {experience.category}
-            </span>
-            <h1 className="font-display text-3xl md:text-5xl font-bold text-primary-foreground mb-2">{experience.name}</h1>
-            <div className="flex flex-wrap items-center gap-4 text-primary-foreground/80 text-sm">
-              <span className="flex items-center gap-1"><Star className="w-4 h-4 text-accent fill-accent" /> {experience.rating} ({experience.reviewCount})</span>
-              <span className="flex items-center gap-1"><Clock className="w-4 h-4" /> {experience.duration}</span>
-              <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> {experience.distance}</span>
+      <div className="bg-white min-h-screen pb-20 font-sans">
+        
+        {/* Banner Hero */}
+        <div className="relative h-64 md:h-80 w-full">
+          <img 
+            src={experience.image} 
+            alt={experience.name} 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+          
+          <div className="absolute top-4 left-4">
+            <Button 
+                variant="secondary" 
+                size="icon" 
+                className="rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white/40 border-none"
+                onClick={() => navigate(-1)}
+            >
+                <ChevronLeft />
+            </Button>
+          </div>
+
+          <div className="absolute bottom-0 left-0 w-full p-6 text-white">
+            <div className="container mx-auto"> {/* Centraliza o texto do banner */}
+                <span className="bg-[#F76300] px-3 py-1 rounded-md text-sm font-bold mb-2 inline-block shadow-lg uppercase tracking-wider">
+                    {experience.category}
+                </span>
+                <h1 className="text-3xl md:text-5xl font-bold mb-2">{experience.name}</h1>
+                <div className="flex items-center gap-4 text-sm md:text-base opacity-90 font-medium">
+                    <span className="flex items-center gap-1"><Star className="fill-yellow-400 text-yellow-400 w-4 h-4"/> {experience.rating} ({experience.reviewCount} avaliações)</span>
+                    <span className="flex items-center gap-1"><Clock className="w-4 h-4"/> {experience.duration}</span>
+                </div>
             </div>
-          </motion.div>
+          </div>
         </div>
-      </div>
 
-      <div className="container py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-8">
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-              <h2 className="font-display text-2xl font-bold text-foreground mb-3">Sobre</h2>
-              <p className="text-muted-foreground leading-relaxed">{experience.description}</p>
-            </motion.div>
-
+        {/* Conteúdo Principal Centralizado */}
+        <div className="container mx-auto px-4 py-8 grid md:grid-cols-3 gap-8">
+          
+          {/* Coluna da Esquerda (Informações) - 2/3 da largura */}
+          <div className="md:col-span-2 space-y-8">
+            
+            {/* Sobre */}
             <div>
-              <h3 className="font-display text-xl font-bold text-foreground mb-4">O que está incluso</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {experience.includes.map((item) => (
-                  <div key={item} className="flex items-center gap-3 bg-card rounded-xl p-4 shadow-card">
-                    <div className="w-8 h-8 bg-secondary/10 rounded-full flex items-center justify-center">
-                      <Check className="w-4 h-4 text-secondary" />
+                <h2 className="text-2xl font-bold text-gray-800 mb-4">Sobre o passeio</h2>
+                <p className="text-gray-600 leading-relaxed text-lg">
+                    {experience.description}
+                </p>
+                <p className="text-gray-600 leading-relaxed text-lg mt-4">
+                    Viva momentos inesquecíveis explorando as belezas naturais da região. 
+                    Este passeio é acompanhado por guias experientes e segue todos os protocolos de segurança.
+                </p>
+            </div>
+
+            {/* Destaques */}
+            <div className="grid grid-cols-2 gap-4">
+                <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 flex items-start gap-3">
+                    <ShieldCheck className="text-[#F76300] w-6 h-6" />
+                    <div>
+                        <h3 className="font-bold text-gray-800">Seguro Incluso</h3>
+                        <p className="text-sm text-gray-500">Atividade com seguro total</p>
                     </div>
-                    <span className="text-sm font-medium text-foreground">{item}</span>
-                  </div>
-                ))}
-              </div>
+                </div>
+                <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 flex items-start gap-3">
+                    <Users className="text-[#F76300] w-6 h-6" />
+                    <div>
+                        <h3 className="font-bold text-gray-800">Grupos Pequenos</h3>
+                        <p className="text-sm text-gray-500">Máximo de 8 pessoas</p>
+                    </div>
+                </div>
+            </div>
+
+            {/* O que levar (Exemplo estático) */}
+            <div>
+                <h2 className="text-xl font-bold text-gray-800 mb-4">O que levar</h2>
+                <ul className="list-disc list-inside text-gray-600 space-y-2">
+                    <li>Protetor solar e óculos de sol</li>
+                    <li>Roupa de banho e toalha</li>
+                    <li>Água e lanches leves</li>
+                    <li>Câmera ou celular para fotos</li>
+                </ul>
+            </div>
+
+          </div>
+
+          {/* Coluna da Direita (Reserva/Info) - 1/3 da largura */}
+          <div className="space-y-6">
+            <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm sticky top-24">
+                <div className="mb-6">
+                    <p className="text-sm text-gray-500 mb-1">Preço por pessoa</p>
+                    <div className="flex items-baseline gap-2">
+                        <span className="text-3xl font-bold text-[#F76300]">R$ {experience.price.toFixed(0)}</span>
+                        <span className="text-sm text-gray-400">/ {experience.duration}</span>
+                    </div>
+                </div>
+
+                <div className="space-y-4 mb-6">
+                    <div className="flex items-center gap-3 text-gray-600">
+                        <Calendar className="w-5 h-5 text-[#F76300]" />
+                        <span>Disponível todos os dias</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-gray-600">
+                        <Clock className="w-5 h-5 text-[#F76300]" />
+                        <span>Saídas: 09:00 e 14:00</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-gray-600">
+                        <MapPin className="w-5 h-5 text-[#F76300]" />
+                        <span>Ponto de Encontro: Vila Principal</span>
+                    </div>
+                </div>
+
+                <Button 
+                    className="w-full bg-[#F76300] hover:bg-orange-600 text-white font-bold h-12 text-lg shadow-lg shadow-orange-200 mb-3"
+                    onClick={handleBooking}
+                >
+                    Reservar Agora
+                </Button>
+
+                <Button 
+                    variant="outline"
+                    className="w-full font-semibold border-gray-300 hover:bg-gray-50"
+                    onClick={() => window.open(`https://wa.me/?text=Tenho interesse no passeio ${experience.name}`, '_blank')}
+                >
+                    Falar no WhatsApp
+                </Button>
+                
+                <p className="text-xs text-center text-gray-400 mt-4">
+                    Cancelamento grátis até 24h antes
+                </p>
             </div>
           </div>
 
-          <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }}>
-            <div className="bg-card rounded-2xl p-6 shadow-card space-y-5 sticky top-24">
-              <div className="text-center">
-                <p className="text-sm text-muted-foreground">A partir de</p>
-                <p className="font-display text-4xl font-bold text-primary">R$ {experience.price}</p>
-                <p className="text-sm text-muted-foreground">por pessoa</p>
-              </div>
-              <div className="space-y-3 text-sm">
-                <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Duração</span>
-                  <span className="font-medium text-foreground">{experience.duration}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Local</span>
-                  <span className="font-medium text-foreground text-right">{experience.location}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Distância</span>
-                  <span className="font-medium text-foreground">{experience.distance}</span>
-                </div>
-              </div>
-              <button
-                onClick={handleReserve}
-                className="w-full bg-gradient-ocean text-secondary-foreground font-semibold py-4 rounded-xl hover:scale-[1.02] active:scale-[0.98] transition-transform"
-              >
-                Reservar Agora
-              </button>
-            </div>
-          </motion.div>
         </div>
       </div>
     </Layout>

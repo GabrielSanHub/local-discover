@@ -21,7 +21,9 @@ import NearbyLocations from "./pages/NearbyLocations";
 import Login from "./pages/Login";
 import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
-import Empresa from "./pages/Empresa"; // Nova página
+import Empresa from "./pages/Empresa";
+import PartnerDashboard from "./pages/PartnerDashboard";
+import Portomar from "./pages/Portomar"; // Nova página
 
 import logoAnimada from "./assets/logo_animada.gif";
 
@@ -43,7 +45,7 @@ const App = () => {
         <img 
           src={logoAnimada} 
           alt="Carregando..." 
-          className="w-64 h-64 md:w-96 md:h-96 object-contain" // Aumentei bastante o tamanho
+          className="w-64 h-64 md:w-96 md:h-96 object-contain" 
         />
       </div>
     );
@@ -57,22 +59,23 @@ const App = () => {
           <Sonner />
           <BrowserRouter>
             <Routes>
-              {/* Rotas diretas - Cada página chama seu próprio Layout internamente */}
               <Route path="/" element={<Index />} />
               <Route path="/about" element={<About />} />
               <Route path="/empresa" element={<Empresa />} />
+              <Route path="/parceiro" element={<PartnerDashboard />} />
+              <Route path="/portomar" element={<Portomar />} /> {/* Nova Rota */}
               <Route path="/restaurants" element={<Restaurants />} />
-              <Route path="/restaurantes" element={<Restaurants />} /> {/* Alias para pt-br */}
+              <Route path="/restaurantes" element={<Restaurants />} />
               <Route path="/restaurant/:id" element={<RestaurantDetail />} />
-              <Route path="/restaurante/:id" element={<RestaurantDetail />} /> {/* Alias para pt-br */}
+              <Route path="/restaurante/:id" element={<RestaurantDetail />} />
               <Route path="/experiences" element={<Experiences />} />
-              <Route path="/experiencias" element={<Experiences />} /> {/* Alias para pt-br */}
+              <Route path="/experiencias" element={<Experiences />} />
               <Route path="/experience/:id" element={<ExperienceDetail />} />
-              <Route path="/experiencia/:id" element={<ExperienceDetail />} /> {/* Alias para pt-br */}
+              <Route path="/experiencia/:id" element={<ExperienceDetail />} />
               <Route path="/profile" element={<Profile />} />
-              <Route path="/perfil" element={<Profile />} /> {/* Alias para pt-br */}
+              <Route path="/perfil" element={<Profile />} />
               <Route path="/cart" element={<Cart />} />
-              <Route path="/carrinho" element={<Cart />} /> {/* Alias para pt-br */}
+              <Route path="/carrinho" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/order-tracking" element={<OrderTracking />} />
               <Route path="/acompanhamento" element={<OrderTracking />} />

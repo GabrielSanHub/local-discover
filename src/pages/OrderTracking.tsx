@@ -5,8 +5,8 @@ import Layout from "@/components/Layout";
 const steps = [
   { icon: Check, label: "Pedido Confirmado", time: "14:30", done: true },
   { icon: ChefHat, label: "Em Preparo", time: "14:35", done: true },
-  { icon: Truck, label: "Saiu para Entrega", time: "14:55", done: false },
-  { icon: MapPin, label: "Entregue", time: "", done: false },
+  { icon: Truck, label: "Pedido Pronto", time: "14:55", done: false },
+  { icon: MapPin, label: "Entregue às 15:00", time: "", done: false },
 ];
 
 const OrderTracking = () => {

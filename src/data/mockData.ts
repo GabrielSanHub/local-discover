@@ -39,6 +39,8 @@ export interface Experience {
   distance: string;
   location: string;
   includes: string[];
+  providerName?: string; // Novo campo
+  providerLogo?: string; // Novo campo
 }
 
 export interface NearbyLocation {
@@ -177,7 +179,7 @@ export const foodItems: FoodItem[] = [
 
 export const experiences: Experience[] = [
   {
-    id: "e1",
+    id: "1",
     name: "Passeio de Buggy pela Costa",
     description: "Explore as praias paradisíacas da costa em um emocionante passeio de buggy com paradas para banho e fotos.",
     image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600",
@@ -189,6 +191,8 @@ export const experiences: Experience[] = [
     distance: "0.5 km",
     location: "Praia do Forte - Ponto de Encontro",
     includes: ["Guia local", "Protetor solar", "Água", "Seguro"],
+    providerName: "Portomar",
+    providerLogo: "https://images.unsplash.com/photo-1551836022-1a351e4d9c9c?w=100"
   },
   {
     id: "e2",
@@ -203,6 +207,8 @@ export const experiences: Experience[] = [
     distance: "1.0 km",
     location: "Piscinas Naturais - Praia do Forte",
     includes: ["Equipamento completo", "Guia bilíngue", "Fotos subaquáticas"],
+    providerName: "Portomar",
+    providerLogo: "https://images.unsplash.com/photo-1551836022-1a351e4d9c9c?w=100"
   },
   {
     id: "e3",
@@ -217,6 +223,8 @@ export const experiences: Experience[] = [
     distance: "2.0 km",
     location: "Marina da Praia do Forte",
     includes: ["Barco", "Equipamento de pesca", "Isca", "Almoço", "Bebidas"],
+    providerName: "Portomar",
+    providerLogo: "https://images.unsplash.com/photo-1551836022-1a351e4d9c9c?w=100"
   },
   {
     id: "e4",
@@ -231,6 +239,8 @@ export const experiences: Experience[] = [
     distance: "3.0 km",
     location: "Base de Quadriciclo - Estrada do Coco",
     includes: ["Capacete", "Instrutor", "Água", "Seguro"],
+    providerName: "Portomar",
+    providerLogo: "https://images.unsplash.com/photo-1551836022-1a351e4d9c9c?w=100"
   },
   {
     id: "e5",
@@ -245,6 +255,8 @@ export const experiences: Experience[] = [
     distance: "1.5 km",
     location: "Porto da Praia do Forte",
     includes: ["Drinks", "Petiscos", "Música ao vivo", "Toalhas"],
+    providerName: "Portomar",
+    providerLogo: "https://images.unsplash.com/photo-1551836022-1a351e4d9c9c?w=100"
   },
   {
     id: "e6",
@@ -259,6 +271,8 @@ export const experiences: Experience[] = [
     distance: "0.8 km",
     location: "Projeto Tamar - Praia do Forte",
     includes: ["Ingresso", "Guia especializado", "Material educativo"],
+    providerName: "Portomar",
+    providerLogo: "https://images.unsplash.com/photo-1551836022-1a351e4d9c9c?w=100"
   },
 ];
 
