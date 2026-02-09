@@ -271,7 +271,7 @@ const Empresa = () => {
               <p className="text-gray-600">
                 O cliente recebe uma notificação (via SMS ou App) assim que o pedido está pronto. 
                 Ele então se dirige ao balcão de retirada do seu estabelecimento para buscar o produto. 
-                Isso garante que a comida chegue quente, elimina taxas de entrega abusivas e traz o fluxo de pessoas para dentro da sua loja.
+                Isso garante que a comida chegue quente, elimina taxas de entrega e traz o fluxo de pessoas para dentro da sua loja.
               </p>
             </div>
           </div>
