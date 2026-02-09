@@ -1,27 +1,53 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
 import { ShoppingBag, User, Menu, X } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
-import { useState } from "react";
-import logo from "../assets/Logo.png"; // Verifique se é Logo.png ou logo.png
+import { useState, useEffect } from "react";
+import logo from "../assets/Logo.png"; 
 
 const Header = () => {
-  const { items } = useCart(); // Usando 'items' do contexto
+  const { items } = useCart();
   const navigate = useNavigate();
+  const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  // Calcula o número total de itens
   const itemCount = items.reduce((acc, item) => acc + item.quantity, 0);
+  const isHome = location.pathname === "/"; 
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Lógica de Estilos Atualizada:
+  // 1. Mobile: Sempre 'sticky' (não sobrepõe o conteúdo) e sempre Laranja (#F76300).
+  // 2. Desktop (Home): 'fixed' (sobrepõe o banner) e alterna entre transparente/laranja.
+  // 3. Desktop (Outras): 'sticky' e sempre Laranja.
+  
+  const headerClasses = `
+    z-50 w-full transition-all duration-300
+    sticky top-0 bg-[#F76300] shadow-md
+    ${isHome ? "md:fixed md:top-0 md:left-0 md:right-0" : ""} 
+    ${isHome && !isScrolled ? "md:bg-transparent md:shadow-none" : ""}
+  `;
 
   return (
-    // Removido shadow-md e bordas para deixar "limpo"
-    // Aumentado padding vertical py-4 para acomodar a logo maior
-    <header className="sticky top-0 z-50 w-full bg-[#F76300]">
+    <header className={headerClasses}>
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         
-        {/* Logo Aumentada */}
+        {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
-          {/* h-16 (64px) para ficar bem visível. Ajuste para h-20 se quiser maior ainda */}
           <img src={logo} alt="Encontre Aqui" className="h-16 w-auto object-contain" />
         </Link>
 
@@ -35,10 +61,9 @@ const Header = () => {
 
         {/* Ações (Carrinho/Perfil) */}
         <div className="hidden md:flex items-center gap-6">
-          <Link to="/carrinho" className="relative text-white hover:text-white/80 transition-transform hover:scale-105">
+          <Link to="/cart" className="relative text-white hover:text-white/80 transition-transform hover:scale-105">
             <ShoppingBag size={28} />
             {itemCount > 0 && (
-              // Badge de notificação
               <span className="absolute -top-2 -right-2 bg-white text-[#F76300] text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full shadow-sm animate-in zoom-in duration-300">
                 {itemCount}
               </span>
@@ -73,7 +98,7 @@ const Header = () => {
             <Link to="/experiencias" onClick={() => setIsMenuOpen(false)}>Experiências</Link>
             <Link to="/empresa" onClick={() => setIsMenuOpen(false)}>Para Empresas</Link>
             <div className="pt-4 border-t border-white/20 flex items-center justify-between">
-               <Link to="/carrinho" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-2">
+               <Link to="/cart" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-2">
                  <ShoppingBag size={24} /> Carrinho ({itemCount})
                </Link>
                <Link to="/login" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-2 font-bold bg-white text-[#F76300] px-4 py-2 rounded-full">
