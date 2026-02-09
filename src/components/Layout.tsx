@@ -28,7 +28,9 @@ const Layout: React.FC<LayoutProps> = ({ children, hideFooter }) => {
             <Button 
               onClick={() => navigate(-1)}
               variant="secondary"
-              className="shadow-2xl bg-white hover:bg-gray-50 text-[#F76300] border border-gray-100 rounded-full h-14 w-14 md:w-auto md:px-6 md:h-14 gap-0 md:gap-2 transition-all hover:scale-110 hover:-translate-y-1 flex items-center justify-center"
+              // Adicionado 'border-[#F76300]/50' (laranja leve) para mobile
+              // e 'md:border-gray-100' para desktop.
+              className="shadow-2xl bg-white hover:bg-gray-50 text-[#F76300] border border-[#F76300]/50 md:border-gray-100 rounded-full h-14 w-14 md:w-auto md:px-6 md:h-14 gap-0 md:gap-2 transition-all hover:scale-110 hover:-translate-y-1 flex items-center justify-center"
               title="Voltar"
             >
               <ArrowLeft size={24} strokeWidth={2.5} />

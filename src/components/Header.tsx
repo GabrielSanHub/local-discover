@@ -39,8 +39,11 @@ const Header = () => {
     z-50 w-full transition-all duration-300
     sticky top-0 bg-[#F76300] shadow-md
     ${isHome ? "md:fixed md:top-0 md:left-0 md:right-0" : ""} 
-    ${isHome && !isScrolled ? "md:bg-transparent md:shadow-none" : ""}
+    
+    ${isHome && !isScrolled ? "md:shadow-none" : ""}
   `;
+
+  // ${isHome && !isScrolled ? "md:bg-transparent md:shadow-none" : ""}
 
   return (
     <header className={headerClasses}>

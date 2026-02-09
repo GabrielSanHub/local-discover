@@ -44,7 +44,7 @@ const RestaurantDetail = () => {
       image: item.image,
       restaurantId: restaurant.id,
       restaurantName: restaurant.name,
-      // ... outros campos necessários pelo FoodItem
+
       cuisine: restaurant.cuisine,
       rating: restaurant.rating,
       deliveryTime: restaurant.deliveryTime,
@@ -78,9 +78,6 @@ const RestaurantDetail = () => {
           <img src={restaurant.image} alt={restaurant.name} className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
           <div className="absolute top-4 left-4">
-            <Button variant="secondary" size="icon" className="rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white/40 border-none" onClick={() => navigate(-1)}>
-                <ChevronLeft />
-            </Button>
           </div>
           <div className="absolute bottom-0 left-0 w-full p-6 text-white">
             <div className="container mx-auto">
@@ -105,7 +102,7 @@ const RestaurantDetail = () => {
                 <h2 className="text-2xl font-bold text-gray-800 mb-6">Cardápio</h2>
                 <div className="grid gap-4">
                     {menuItems.map((item) => (
-                        <div key={item.id} className="flex gap-4 p-4 rounded-xl border border-gray-100 bg-white hover:shadow-lg transition-all duration-300 group">
+                        <div key={item.id} className="flex gap-4 p-2 rounded-xl border border-gray-100 bg-white hover:shadow-lg transition-all duration-300 group">
                             <div className="w-24 h-24 bg-gray-100 rounded-lg overflow-hidden shrink-0">
                                 <img src={item.image} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                             </div>
