@@ -18,10 +18,10 @@ const Cart = () => {
             <h2 className="font-display text-2xl font-bold text-foreground">Carrinho vazio</h2>
             <p className="text-muted-foreground">Adicione itens dos nossos restaurantes parceiros.</p>
             <Link
-              to="/restaurantes"
+              to="/"
               className="inline-flex items-center gap-2 bg-gradient-sunset text-primary-foreground font-semibold px-6 py-3 rounded-xl shadow-primary-glow"
             >
-              Explorar Restaurantes
+              Voltar ao Início
             </Link>
           </motion.div>
         </div>

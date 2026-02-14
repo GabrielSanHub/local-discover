@@ -1,6 +1,6 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
-import { ShoppingBag, User, Menu, X } from "lucide-react";
+import { ShoppingBag, User, Menu, X, ShoppingCart } from "lucide-react"; // Importei ShoppingCart opcionalmente se quiser ícone
 import { useCart } from "@/contexts/CartContext";
 import { useState, useEffect } from "react";
 import logo from "../assets/Logo.png"; 
@@ -30,11 +30,6 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lógica de Estilos Atualizada:
-  // 1. Mobile: Sempre 'sticky' (não sobrepõe o conteúdo) e sempre Laranja (#F76300).
-  // 2. Desktop (Home): 'fixed' (sobrepõe o banner) e alterna entre transparente/laranja.
-  // 3. Desktop (Outras): 'sticky' e sempre Laranja.
-  
   const headerClasses = `
     z-50 w-full transition-all duration-300
     sticky top-0 bg-[#F76300] shadow-md
@@ -42,8 +37,6 @@ const Header = () => {
     
     ${isHome && !isScrolled ? "md:shadow-none" : ""}
   `;
-
-  // ${isHome && !isScrolled ? "md:bg-transparent md:shadow-none" : ""}
 
   return (
     <header className={headerClasses}>
@@ -55,11 +48,13 @@ const Header = () => {
         </Link>
 
         {/* Navegação Desktop */}
-        <nav className="hidden md:flex items-center space-x-8 text-white font-medium text-lg">
+        <nav className="hidden md:flex items-center space-x-6 text-white font-medium text-lg">
           <Link to="/" className="hover:text-white/80 transition-colors">Início</Link>
-          <Link to="/restaurantes" className="hover:text-white/80 transition-colors">Sabores</Link>
+          <Link to="/restaurantes" className="hover:text-white/80 transition-colors">Restaurantes</Link>
           <Link to="/experiencias" className="hover:text-white/80 transition-colors">Experiências</Link>
-          <Link to="/empresa" className="hover:text-white/80 transition-colors">Para Empresas</Link>
+          {/* Link Adicionado */}
+          <Link to="/shops" className="hover:text-white/80 transition-colors">Comércio</Link>
+          <Link to="/empresa" className="hover:text-white/80 transition-colors">Seja Parceiro</Link>
         </nav>
 
         {/* Ações (Carrinho/Perfil) */}
@@ -94,12 +89,15 @@ const Header = () => {
 
       {/* Menu Mobile */}
       {isMenuOpen && (
-        <div className="md:hidden bg-[#F76300] border-t border-white/10 p-4 absolute w-full shadow-xl animate-in slide-in-from-top-5">
+        <div className="md:hidden bg-[#F76300] border-t border-white/10 p-4 absolute w-full shadow-xl animate-in slide-in-from-top-5 z-50">
           <div className="flex flex-col space-y-4 text-white font-medium text-lg">
             <Link to="/" onClick={() => setIsMenuOpen(false)}>Início</Link>
-            <Link to="/restaurantes" onClick={() => setIsMenuOpen(false)}>Sabores</Link>
+            <Link to="/restaurantes" onClick={() => setIsMenuOpen(false)}>Restaurantes</Link>
             <Link to="/experiencias" onClick={() => setIsMenuOpen(false)}>Experiências</Link>
+            {/* Link Adicionado Mobile */}
+            <Link to="/shops" onClick={() => setIsMenuOpen(false)}>Comércio</Link>
             <Link to="/empresa" onClick={() => setIsMenuOpen(false)}>Para Empresas</Link>
+            
             <div className="pt-4 border-t border-white/20 flex items-center justify-between">
                <Link to="/cart" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-2">
                  <ShoppingBag size={24} /> Carrinho ({itemCount})
