@@ -57,7 +57,7 @@ const Header = () => {
         {/* Navegação Desktop */}
         <nav className="hidden md:flex items-center space-x-8 text-white font-medium text-lg">
           <Link to="/" className="hover:text-white/80 transition-colors">Início</Link>
-          <Link to="/restaurantes" className="hover:text-white/80 transition-colors">Restaurantes</Link>
+          <Link to="/restaurantes" className="hover:text-white/80 transition-colors">Sabores</Link>
           <Link to="/experiencias" className="hover:text-white/80 transition-colors">Experiências</Link>
           <Link to="/empresa" className="hover:text-white/80 transition-colors">Para Empresas</Link>
         </nav>
@@ -97,7 +97,7 @@ const Header = () => {
         <div className="md:hidden bg-[#F76300] border-t border-white/10 p-4 absolute w-full shadow-xl animate-in slide-in-from-top-5">
           <div className="flex flex-col space-y-4 text-white font-medium text-lg">
             <Link to="/" onClick={() => setIsMenuOpen(false)}>Início</Link>
-            <Link to="/restaurantes" onClick={() => setIsMenuOpen(false)}>Restaurantes</Link>
+            <Link to="/restaurantes" onClick={() => setIsMenuOpen(false)}>Sabores</Link>
             <Link to="/experiencias" onClick={() => setIsMenuOpen(false)}>Experiências</Link>
             <Link to="/empresa" onClick={() => setIsMenuOpen(false)}>Para Empresas</Link>
             <div className="pt-4 border-t border-white/20 flex items-center justify-between">

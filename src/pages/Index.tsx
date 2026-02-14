@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { Search, MapPin, ArrowRight, Store, Utensils, Tent } from "lucide-react";
+import { Search, MapPin, ArrowRight, Store, Utensils, Tent, ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "../assets/hero-praia.jpg";
 
@@ -41,7 +41,7 @@ const Index = () => {
                       <div className="bg-red-600 w-12 h-12 rounded-2xl flex items-center justify-center text-white mb-4 shadow-lg group-hover:-translate-y-2 transition-transform duration-300">
                         <Utensils size={24} />
                       </div>
-                      <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">Restaurantes</h2>
+                      <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">Sabores</h2>
                       <p className="text-gray-200 text-sm md:text-base font-medium opacity-90 max-w-xs">
                         Descubra os sabores locais, cardápios variados e faça seu pedido.
                       </p>
@@ -84,6 +84,19 @@ const Index = () => {
                   </div>
                 </div>
               </Link>
+
+              {/* BLOCO COMÉRCIO LOCAL */}
+              {/* <Link to="/shops" className="group">
+              <div className="bg-white p-6 rounded-2xl shadow-sm border border-border hover:shadow-lg transition-all duration-300 hover:-translate-y-1 h-full flex flex-col items-center justify-center text-center gap-4">
+                <div className="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <ShoppingBag className="w-8 h-8 text-purple-600" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg text-gray-900 mb-1">Comércio Local</h3>
+                  <p className="text-sm text-muted-foreground">Lojas, artesanato e moda</p>
+                </div>
+              </div>
+            </Link> */}
 
             </div>
           </div>

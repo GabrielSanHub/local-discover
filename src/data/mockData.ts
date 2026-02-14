@@ -53,6 +53,131 @@ export interface NearbyLocation {
   rating: number;
 }
 
+export interface Hotel {
+  id: number;
+  name: string;
+  category: string;
+  image: string;
+  price: string;
+  rating: number;
+  location: string;
+  amenities: string[];
+  description: string;
+}
+
+export interface Event {
+  id: number;
+  name: string;
+  date: string;
+  image: string;
+  price: string;
+  location: string;
+  description: string;
+}
+
+// Adicione isso ao final do arquivo src/data/mockData.ts, mantendo o restante
+
+export interface Shop {
+  id: number;
+  name: string;
+  category: string;
+  image: string;
+  location: string;
+  description: string;
+  hours: string;
+  phone?: string;
+  rating: number;
+}
+
+export const shops: Shop[] = [
+  {
+    id: 1,
+    name: "Artesanato da Vila",
+    category: "Artesanato",
+    image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80",
+    location: "Alameda do Sol",
+    description: "Peças exclusivas feitas à mão por artesãos locais. Lembranças autênticas da Bahia, cerâmicas, rendas e objetos de decoração.",
+    hours: "09:00 - 22:00",
+    rating: 4.8
+  },
+  {
+    id: 2,
+    name: "Moda Praia Brasil",
+    category: "Moda",
+    image: "https://images.unsplash.com/photo-1550614000-4b9519e0031c?auto=format&fit=crop&w=800&q=80",
+    location: "Praça dos Artistas",
+    description: "As melhores marcas de biquínis, saídas de praia e acessórios para você aproveitar o sol com estilo.",
+    hours: "10:00 - 21:00",
+    rating: 4.6
+  },
+  {
+    id: 3,
+    name: "Sabores da Terra",
+    category: "Empório",
+    image: "https://images.unsplash.com/photo-1596451190630-186aff535bf2?auto=format&fit=crop&w=800&q=80",
+    location: "Rua do Farol",
+    description: "Cachaças artesanais, pimentas, doces típicos e produtos regionais para levar o sabor da Bahia para casa.",
+    hours: "09:00 - 20:00",
+    rating: 4.9
+  },
+  {
+    id: 4,
+    name: "Surf & Co.",
+    category: "Esportes",
+    image: "https://images.unsplash.com/photo-1534438097545-a2c22c57f01b?auto=format&fit=crop&w=800&q=80",
+    location: "Av. Beira Mar",
+    description: "Equipamentos de surf, aluguel de pranchas, roupas de borracha e tudo para os amantes do mar.",
+    hours: "08:00 - 18:00",
+    rating: 4.7
+  }
+];
+
+export const hotels: Hotel[] = [
+  {
+    id: 1,
+    name: "Tivoli Ecoresort",
+    category: "Resort de Luxo",
+    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80",
+    price: "R$ 1.500/noite",
+    rating: 4.9,
+    location: "Praia do Forte - Norte",
+    amenities: ["Spa", "Piscina Infinita", "Frente Mar", "All Inclusive"],
+    description: "Um refúgio de luxo onde a natureza e o conforto se encontram. Perfeito para relaxar e aproveitar o melhor da Bahia com sofisticação."
+  },
+  {
+    id: 2,
+    name: "Pousada Casa de Praia",
+    category: "Pousada Boutique",
+    image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80",
+    price: "R$ 450/noite",
+    rating: 4.5,
+    location: "Vila da Praia",
+    amenities: ["Café da Manhã", "Wi-Fi", "Pet Friendly"],
+    description: "Charme e aconchego no coração da vila, a poucos passos dos melhores restaurantes e da praia."
+  }
+];
+
+export const events: Event[] = [
+  {
+    id: 1,
+    name: "Festival de Jazz & Blues",
+    date: "15 de Outubro - 20:00",
+    image: "https://images.unsplash.com/photo-1514525253440-b393452e3383?auto=format&fit=crop&w=800&q=80",
+    price: "R$ 80,00",
+    location: "Praça da Igreja",
+    description: "Uma noite mágica com os melhores artistas de Jazz e Blues da região, gastronomia local e muita cultura."
+  },
+  {
+    id: 2,
+    name: "Luau na Praia",
+    date: "20 de Outubro - 21:00",
+    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80",
+    price: "Gratuito",
+    location: "Praia do Portomar",
+    description: "Música ao vivo, fogueira e boas vibrações sob a lua cheia. Traga sua canga e aproveite."
+  }
+];
+
 export const restaurants: Restaurant[] = [
   {
     id: "1",

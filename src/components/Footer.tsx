@@ -30,7 +30,7 @@ const Footer = () => (
         <div>
           <h4 className="font-display text-lg font-semibold mb-4">Explorar</h4>
           <ul className="space-y-2 text-sm opacity-70">
-            <li><Link to="/restaurantes" className="hover:opacity-100 transition-opacity">Restaurantes</Link></li>
+            <li><Link to="/restaurantes" className="hover:opacity-100 transition-opacity">Sabores</Link></li>
             <li><Link to="/experiencias" className="hover:opacity-100 transition-opacity">Experiências</Link></li>
             <li><Link to="/locais" className="hover:opacity-100 transition-opacity">Locais Próximos</Link></li>
           </ul>

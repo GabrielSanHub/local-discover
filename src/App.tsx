@@ -22,6 +22,13 @@ import NearbyLocations from "./pages/NearbyLocations";
 import Login from "./pages/Login";
 import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
+
+import HotelDetail from "./pages/HotelDetail";
+import EventDetail from "./pages/EventDetail";
+
+import Shops from "./pages/Shops";
+import ShopDetail from "./pages/ShopDetail";
+
 import Empresa from "./pages/Empresa";
 import PartnerDashboard from "./pages/PartnerDashboard";
 import Portomar from "./pages/Portomar"; // Nova página
@@ -74,6 +81,10 @@ const App = () => {
               <Route path="/experiencias" element={<Experiences />} />
               <Route path="/experience/:id" element={<ExperienceDetail />} />
               <Route path="/experiencia/:id" element={<ExperienceDetail />} />
+              <Route path="/shops" element={<Shops />} />
+              <Route path="/shop/:id" element={<ShopDetail />} />
+              <Route path="/hotels/:id" element={<HotelDetail />} />
+              <Route path="/events/:id" element={<EventDetail />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/perfil" element={<Profile />} />
               <Route path="/cart" element={<Cart />} />
